@@ -9,8 +9,7 @@ const formatName = (nameWithDash) => nameWithDash.replace('-', ' ');
 
 const PokemonPage = ({ previous, next }) => {
   const { name } = useParams();
-  console.log('Previous', previous);
-  console.log('Next', next);
+
   const {
     data: pokemon,
     error,
@@ -36,7 +35,6 @@ const PokemonPage = ({ previous, next }) => {
     (ability) => ability.is_hidden === true
   );
 
-  console.log('hiddenAbility=', hiddenAbility);
   return (
     <>
       <div className="links">
