@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for full-stack-open-pokedex-sparkling-glitter-2080 on 2024-09-22T16:04:32+03:00
+# fly.toml app configuration file generated for full-stack-open-pokedex-weathered-pond-1509 on 2024-09-22T16:04:32+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'full-stack-open-pokedex-sparkling-glitter-2080'
+app = 'full-stack-open-pokedex-weathered-pond-1509'
 primary_region = 'cdg'
 
 [build]
