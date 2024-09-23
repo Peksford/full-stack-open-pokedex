@@ -23,14 +23,14 @@ primary_region = 'cdg'
   processes = ['app']
 
 [deploy]
-  strategy = "bluegreen"
+  strategy = "canary"
 
 [[http_service.checks]]
   grace_period = "10s"
   interval = "30s"
   method = "GET"
   timeout = "5s"
-  path = "/https://full-stack-open-pokedex-weathered-pond-1509.fly.dev/health"
+  path = "/health"
 
 [[vm]]
   memory = '1gb'
