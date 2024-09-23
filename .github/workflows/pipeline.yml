@@ -1,6 +1,9 @@
 
 name: Deployment pipeline
 
+env:
+  CONDITION: ${{ contains(github.event.commits.*.message, '#skip'}}
+
 on:
   push:
     branches:
@@ -37,12 +40,12 @@ jobs:
         run: npm run test
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy app
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' }} && ${{ env.CONDITION == 'false' }}
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
   tag_release:
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' }} && ${{ env.CONDITION == 'false' }}
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:  
