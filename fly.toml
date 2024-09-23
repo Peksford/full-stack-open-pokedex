@@ -30,7 +30,7 @@ primary_region = 'cdg'
   interval = "30s"
   method = "GET"
   timeout = "5s"
-  path = "/health"
+  path = "https://full-stack-open-pokedex-weathered-pond-1509.fly.dev/health"
 
 [[vm]]
   memory = '1gb'
