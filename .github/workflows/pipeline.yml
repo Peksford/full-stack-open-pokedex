@@ -27,6 +27,8 @@ jobs:
         run: npx playwright install --with-deps
       - name: e2e tests
         run: npm run test:e2e -- --project=chromium --reporter=list
+      - name: Debug commit messages
+        run: echo "commit message ${{ github.event.commits.*.message }}"
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
