@@ -42,7 +42,7 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       - name: Discord Webhook Notify
-        uses: stegzilla/discord-notify@v2
+        uses: stegzilla/discord-notify@v4
         if: failure()
         with:
           colour: "#ff3333"
@@ -61,7 +61,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
       - name: Discord Webhook Notify
-        uses: stegzilla/discord-notify@v2
+        uses: stegzilla/discord-notify@v4
         if: success()
         with:
           title: A new version of Pokedex deployed
