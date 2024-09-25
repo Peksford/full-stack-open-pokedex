@@ -27,8 +27,6 @@ jobs:
         run: npx playwright install --with-deps
       - name: e2e tests
         run: npm run test:e2e -- --project=chromium --reporter=list
-      - name: Debug commit messages
-        run: echo "commit message ${{ join(github.event.head_commit.message,', ') }}"
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
@@ -43,6 +41,13 @@ jobs:
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      - name: Discord Webhook Notify
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: failure()
+        with:
+          severity: error
+          details: Build failed
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     if: ${{ (github.event_name == 'push') && (!contains(join(github.event.head_commit.message,', '), '#skip')) }}
     needs: [simple_deployment_pipeline]
@@ -54,5 +59,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+      - name: Discord Webhook Notify
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: success()
+        with:
+          severity: info
+          details: A new version of Pokedex deployed
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
         
         
