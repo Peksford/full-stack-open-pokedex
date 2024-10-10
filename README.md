@@ -15,3 +15,4 @@ Start by running `npm install` inside the project folder
 `npm run start-prod` to run your production build
 
 # Link to my app in exercise 11.20: https://github.com/Peksford/blogApp
+# Website URL in exercise 11.20: https://osa4-backend.fly.dev/
